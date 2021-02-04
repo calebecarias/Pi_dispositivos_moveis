@@ -28,11 +28,7 @@
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
         android:text="Estilo: Rock"
-        app:layout_constraintEnd_toStartOf="@+id/textView3"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNomeAB" />
 
@@ -43,49 +39,47 @@
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="200dp"
-        android:layout_marginRight="200dp"
         android:text="email: nx0@gmail.com"
-        app:layout_constraintEnd_toStartOf="@+id/textView4"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEstiloM" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvSpotify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:text="spotify: spotify.com/nx0"
+        android:text="spotify.com/nx0"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvEstiloM"
         app:layout_constraintTop_toBottomOf="@+id/tvNomeAB" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvTelefone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
         android:text="telefone: 15 98766-8978"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmailP" />
 
     <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="284dp"
-        android:layout_height="273dp"
+        android:id="@+id/cvAgenda"
+        android:layout_width="267dp"
+        android:layout_height="227dp"
         android:layout_marginStart="56dp"
         android:layout_marginLeft="56dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="56dp"
         android:layout_marginRight="56dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAnuncie" />
 
     <TextView
         android:id="@+id/tvNomeAB"
@@ -101,4 +95,65 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/btnAnuncie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        android:text="Anuncie seu trabalho"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="373dp" />
+
+    <TextView
+        android:id="@+id/tvYoutube"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="youtube.com.br/nx0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvEmailP"
+        app:layout_constraintTop_toBottomOf="@+id/tvSpotify" />
+
+    <TextView
+        android:id="@+id/tvInstagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:text="Instagram: @NX0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toEndOf="@+id/tvTelefone"
+        app:layout_constraintTop_toBottomOf="@+id/tvYoutube" />
+
+    <Button
+        android:id="@+id/btnVerCalendario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="125dp"
+        android:layout_marginLeft="125dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="125dp"
+        android:layout_marginRight="125dp"
+        android:layout_marginBottom="16dp"
+        android:text="Ver Calendário"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvAgenda" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
