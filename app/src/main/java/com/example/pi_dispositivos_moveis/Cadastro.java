@@ -12,6 +12,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -51,6 +52,34 @@ public class Cadastro extends AppCompatActivity {
                     Toast.makeText(Cadastro.this, "Senha não confere", Toast.LENGTH_LONG).show();
                     return;
                 }
+                final EditText etNewName =  findViewById(R.id.etNomeCadastro);
+                final String NewName = etNewName.getText().toString();
+                if(NewName.isEmpty()) {
+                    Toast.makeText(Cadastro.this, "Campo de nome não preenchido", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                final EditText etNewDate =  findViewById(R.id.etDataNascimentoCadastro);
+                final String newDate = etNewDate.getText().toString();
+                if(newDate.isEmpty()) {
+                    Toast.makeText(Cadastro.this, "Data de nascimento não preenchida", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                EditText etNewEmail =  findViewById(R.id.etEmailCadastro);
+                final String newEmail = etNewEmail.getText().toString();
+                if(newEmail.isEmpty()) {
+                    Toast.makeText(Cadastro.this, "Campo de email não preenchido", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                EditText etNewTelefone =  findViewById(R.id.etTelefoneCadastro);
+                final String newTelefone = etNewTelefone.getText().toString();
+                if(newTelefone.isEmpty()) {
+                    Toast.makeText(Cadastro.this, "Campo telefone não preenchido", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+
 
                 ExecutorService executorService = Executors.newSingleThreadExecutor();
                 executorService.execute(new Runnable() {
@@ -59,6 +88,10 @@ public class Cadastro extends AppCompatActivity {
                         HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "register.php", "POST", "UTF-8");
                         httpRequest.addParam("newLogin", newLogin);
                         httpRequest.addParam("newPassword", newPassword);
+                        httpRequest.addParam("newName", NewName);
+                        httpRequest.addParam("newDate", newDate);
+                        httpRequest.addParam("newEmail", newEmail);
+                        httpRequest.addParam("newTelefone", newTelefone);
 
                         try {
                             InputStream is = httpRequest.execute();

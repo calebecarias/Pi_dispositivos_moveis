@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/perfilViewOp"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Perfil"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/BuscarViewOp"
+        android:icon="@drawable/ic_baseline_search_24"
+        android:title="Buscar"
+        app:showAsAction="ifRoom" />
+</menu>

@@ -1,5 +1,6 @@
 package com.example.pi_dispositivos_moveis;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -11,8 +12,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ import java.util.List;
 
 public class TelaInicialActivity extends AppCompatActivity {
 
+    BottomNavigationView bottomNavigationView;
     static  int NEW_ITEM_REQUEST = 1;
 
 
@@ -29,6 +33,20 @@ public class TelaInicialActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
+
+        bottomNavigationView = findViewById(R.id.btNavInicial);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.perfilViewOp:
+                        break;
+                    case R.id.BuscarViewOp:
+                        break;
+                }
+                return true;
+            }
+        });
 
 
         TelaInicialViewModel vm = new ViewModelProvider(this).get(TelaInicialViewModel.class);
@@ -49,7 +67,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         rvAnuncios.addItemDecoration(dividerItemDecoration);
     }
 
- 
+
 
     protected void onStart() {
         super.onStart();
