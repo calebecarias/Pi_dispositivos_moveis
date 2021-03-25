@@ -40,7 +40,8 @@ public class TelaInicialActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.perfilViewOp:
-                        break;
+                        Intent i = new Intent(TelaInicialActivity.this, ProfileActivity.class);
+                        startActivity(i);
                     case R.id.BuscarViewOp:
                         break;
                 }
