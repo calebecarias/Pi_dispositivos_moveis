@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Anuncie">
+    tools:context=".activity.Anuncie">
 
     <EditText
         android:id="@+id/etDescricaoanuncie"
@@ -95,11 +95,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imvPhotoAnuncie"
         app:srcCompat="@android:drawable/ic_menu_camera" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/imvPhotoAnuncie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="34dp"

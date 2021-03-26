@@ -1,10 +1,10 @@
-package com.example.pi_dispositivos_moveis;
-import android.content.Context;
+package com.example.pi_dispositivos_moveis.activity;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+
+import com.example.pi_dispositivos_moveis.Config;
+import com.example.pi_dispositivos_moveis.Login;
 
 public class MainActivity extends AppCompatActivity {
 

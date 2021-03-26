@@ -1,8 +1,10 @@
-package com.example.pi_dispositivos_moveis;
+package com.example.pi_dispositivos_moveis.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.pi_dispositivos_moveis.R;
 
 public class SolicitacoesActivity extends AppCompatActivity {
 

@@ -11,14 +11,14 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Login"></activity>
         <activity android:name=".Cadastro" />
-        <activity android:name=".MainAnuncio" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".TelaInicialActivity" />
+        <activity android:name=".activity.MainAnuncio" />
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.TelaInicialActivity" />
         <activity android:name=".SearchActivity" />
-        <activity android:name=".CalendarioActivity" />
-        <activity android:name=".SolicitacoesActivity" />
+        <activity android:name=".activity.CalendarioActivity" />
+        <activity android:name=".activity.SolicitacoesActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:theme="@android:style/Theme.NoDisplay">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

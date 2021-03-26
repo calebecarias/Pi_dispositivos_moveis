@@ -1,6 +1,7 @@
 package com.example.pi_dispositivos_moveis;
 
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.pi_dispositivos_moveis.activity.MainAnuncio;
+import com.example.pi_dispositivos_moveis.activity.TelaInicialActivity;
 
 import java.util.List;
 
@@ -30,12 +34,12 @@ public class Myadapter extends RecyclerView.Adapter{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Anuncio anuncio = anuncios.get(position);
+        final Anuncio anuncio = anuncios.get(position);
 
         View v = holder.itemView;
 
         ImageView imv = v.findViewById(R.id.imvAnuncio);
-        imv.setImageURI(anuncio.photo);
+        imv.setImageBitmap(anuncio.photo);
 
         TextView tvTitle = v.findViewById(R.id.tvNomeAnuncio);
         tvTitle.setText(anuncio.nome);
@@ -46,13 +50,23 @@ public class Myadapter extends RecyclerView.Adapter{
         TextView tvCacheMAnunico = v.findViewById(R.id.tvCacheMAnunico);
         tvCacheMAnunico.setText(anuncio.cache);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(telaInicialActivity, MainAnuncio.class);
+                i.putExtra("anuncioid", anuncio.getIdanuncio());
+
+
+            }
+        });
+
 
 
     }
 
     @Override
     public int getItemCount() {
-        return anuncios.size();
+        return this.anuncios.size();
     }
 }
 

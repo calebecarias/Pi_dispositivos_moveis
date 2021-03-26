@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TelaInicialViewModel extends ViewModel {
+public class   TelaInicialViewModel extends ViewModel {
     List<Anuncio> anuncios  = new ArrayList<>();
 
     public List<Anuncio> getAnuncios() {

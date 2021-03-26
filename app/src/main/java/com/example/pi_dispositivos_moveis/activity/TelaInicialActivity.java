@@ -1,24 +1,22 @@
-package com.example.pi_dispositivos_moveis;
+package com.example.pi_dispositivos_moveis.activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
+import com.example.pi_dispositivos_moveis.Anuncio;
+import com.example.pi_dispositivos_moveis.Myadapter;
+import com.example.pi_dispositivos_moveis.R;
+import com.example.pi_dispositivos_moveis.TelaInicialViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TelaInicialActivity extends AppCompatActivity {
