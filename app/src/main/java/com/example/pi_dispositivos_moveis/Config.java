@@ -5,13 +5,12 @@ import android.content.SharedPreferences;
 
 public class Config {
 
-    static String SERVER_URL_BASE = "https://loginwebifes.herokuapp.com/";
+    public static String SERVER_URL_BASE = "https://musicstationpi.herokuapp.com/";
 
     public static void setLogin(Context context, String login) {
         SharedPreferences mPrefs = context.getSharedPreferences("configs", 0);
         SharedPreferences.Editor mEditor = mPrefs.edit();
         mEditor.putString("login", login).commit();
-        // ver se tem que mudar as chaves login e password de acordo com o banco;
     }
 
     public static String getLogin(Context context) {

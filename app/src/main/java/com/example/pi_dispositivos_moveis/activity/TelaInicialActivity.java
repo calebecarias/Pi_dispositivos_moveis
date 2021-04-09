@@ -2,6 +2,8 @@ package com.example.pi_dispositivos_moveis.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -47,23 +49,26 @@ public class TelaInicialActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView rvAnuncios = findViewById(R.id.rvAnuncios);
+        rvAnuncios.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        rvAnuncios.setLayoutManager(layoutManager);
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvAnuncios.getContext(),DividerItemDecoration.VERTICAL);
+        rvAnuncios.addItemDecoration(dividerItemDecoration);
 
         TelaInicialViewModel vm = new ViewModelProvider(this).get(TelaInicialViewModel.class);
 
-        List<Anuncio> anuncios = vm.getAnuncios();
+        LiveData<List<Anuncio>> anuncios = vm.getAnuncios();
+        anuncios.observe(this, new Observer<List<Anuncio>>() {
+            @Override
+            public void onChanged(List<Anuncio> anuncios) {
+                Myadapter myAdapter = new Myadapter(TelaInicialActivity.this, anuncios);
+                rvAnuncios.setAdapter(myAdapter);
+            }
+        });
 
-        myadapter = new Myadapter(this, anuncios);
 
-        RecyclerView rvAnuncios = findViewById(R.id.rvAnuncios);
-        rvAnuncios.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        rvAnuncios.setLayoutManager(layoutManager);
-
-        rvAnuncios.setAdapter(myadapter);
-
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(rvAnuncios.getContext(),DividerItemDecoration.VERTICAL);
-        rvAnuncios.addItemDecoration(dividerItemDecoration);
     }
 
 

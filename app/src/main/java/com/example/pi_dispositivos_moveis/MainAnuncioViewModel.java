@@ -1,10 +1,22 @@
 package com.example.pi_dispositivos_moveis;
 
+import android.graphics.Bitmap;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class MainAnuncioViewModel extends ViewModel {
 
@@ -25,7 +37,49 @@ public class MainAnuncioViewModel extends ViewModel {
         return anuncio;
     }
 
+
     void loadAnuncio(){
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "detalhes_anuncio.php", "GET", "UTF-8");
+                httpRequest.addParam("anuncioid", anuncioid);
+
+                try {
+                    InputStream is = httpRequest.execute();
+                    String result = Util.inputStream2String(is,"UTF-8");
+                    httpRequest.finish();
+
+                    Log.d("HTTP_REQUEST_RESULT",result);
+
+
+                    JSONObject jsonObject = new JSONObject(result);
+                    int success = jsonObject.getInt("success");
+                    if (success == 1){
+                        JSONArray jsonArray = jsonObject.getJSONArray("anuncio");
+                        JSONObject jAnuncio = jsonArray.getJSONObject(0);
+
+                        String nome = jAnuncio.getString("anuncio");
+                        String descricao = jAnuncio.getString("descricao");
+                        String estilo = jAnuncio.getString("estilo");
+                        String spotify = jAnuncio.getString("spotify");
+                        String cache = jAnuncio.getString("cache");
+
+                        String imgBase64 = jAnuncio.getString("foto");
+                        String pureBase64Encoded = imgBase64.substring(imgBase64.indexOf(",")+1);
+                        Bitmap photo = Util.base642Bitmap(pureBase64Encoded);
+
+                        Anuncio a = new Anuncio(photo,nome,estilo,spotify,descricao,cache);
+
+                        anuncio.postValue(a);
+
+                    }
+                } catch (IOException | JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 

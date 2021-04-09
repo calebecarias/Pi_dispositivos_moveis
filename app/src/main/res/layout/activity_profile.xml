@@ -7,7 +7,7 @@
     tools:context=".activity.ProfileActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imvPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="125dp"
@@ -22,24 +22,24 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvEmailP"
+        android:id="@+id/tvEmailPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="email: nx0@gmail.com"
+        android:text="email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNomePerfil" />
 
     <TextView
-        android:id="@+id/tvTelefone"
+        android:id="@+id/tvTelefonePerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="telefone: 15 98766-8978"
+        android:text="telefone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmailP" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmailPerfil" />
 
     <TextView
         android:id="@+id/tvNomePerfil"
@@ -50,11 +50,11 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="155dp"
         android:layout_marginRight="155dp"
-        android:text="Nome: Banda NX0"
+        android:text="Nome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imvPerfil" />
 
     <Button
         android:id="@+id/btnAnuncie"
@@ -69,10 +69,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTelefone" />
+        app:layout_constraintTop_toBottomOf="@+id/tvTelefonePerfil" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnCalendario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Acessar meus compromissos"
@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.187" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSolicitacao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="120dp"
@@ -98,7 +98,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/btnCalendario"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

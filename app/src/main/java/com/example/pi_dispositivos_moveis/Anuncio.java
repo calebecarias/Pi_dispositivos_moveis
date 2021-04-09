@@ -20,8 +20,7 @@ public class Anuncio {
         this.cache = cache;
     }
 
-    public Anuncio(String idanuncio, Bitmap photo, String nome, String estilo, String spotify, String descricao, String cache) {
-        Idanuncio = idanuncio;
+    public Anuncio( Bitmap photo, String nome, String estilo, String spotify, String descricao, String cache) {
         this.photo = photo;
         this.nome = nome;
         this.estilo = estilo;
