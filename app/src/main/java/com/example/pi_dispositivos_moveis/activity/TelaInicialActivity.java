@@ -49,7 +49,7 @@ public class TelaInicialActivity extends AppCompatActivity {
             }
         });
 
-        RecyclerView rvAnuncios = findViewById(R.id.rvAnuncios);
+        final RecyclerView rvAnuncios = findViewById(R.id.rvAnuncios);
         rvAnuncios.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         rvAnuncios.setLayoutManager(layoutManager);

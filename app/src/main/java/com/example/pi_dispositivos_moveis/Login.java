@@ -43,7 +43,7 @@ public class Login extends AppCompatActivity {
                 executorService.execute(new Runnable() {
                     @Override
                     public void run() {
-                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "login.php", "POST", "UTF-8");
+                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "php_action/login_mobile.php", "POST", "UTF-8");
                         httpRequest.addParam("login", login);
                         httpRequest.addParam("senha", password);
 
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
                             httpRequest.finish();
 
                             JSONObject jsonObject = new JSONObject(result);
-                            final int success = jsonObject.getInt("success");
+                            final int success = jsonObject.getInt("sucesso");
                             if(success == 1) {
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -67,7 +67,7 @@ public class Login extends AppCompatActivity {
                                 });
                             }
                             else {
-                                final String error = jsonObject.getString("error");
+                                final String error = jsonObject.getString("erro");
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {

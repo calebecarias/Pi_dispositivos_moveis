@@ -111,7 +111,7 @@ public class Anuncie extends AppCompatActivity {
 
                             Log.d("HTTP_REQUEST_RESULT",result);
                             JSONObject jsonObject = new JSONObject(result);
-                            int success = jsonObject.getInt("success");
+                            final int success = jsonObject.getInt("success");
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
