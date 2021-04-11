@@ -23,6 +23,8 @@ public class Cadastro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        //a
+
         Button btnRegister =  findViewById(R.id.btnCadastrar);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
