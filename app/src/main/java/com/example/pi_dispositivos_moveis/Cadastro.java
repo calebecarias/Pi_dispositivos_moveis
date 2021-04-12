@@ -87,13 +87,13 @@ public class Cadastro extends AppCompatActivity {
                 executorService.execute(new Runnable() {
                     @Override
                     public void run() {
-                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "register.php", "POST", "UTF-8");
-                        httpRequest.addParam("newLogin", newLogin);
-                        httpRequest.addParam("newPassword", newPassword);
-                        httpRequest.addParam("newName", NewName);
-                        httpRequest.addParam("newDate", newDate);
-                        httpRequest.addParam("newEmail", newEmail);
-                        httpRequest.addParam("newTelefone", newTelefone);
+                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "php_action/createUsuario_mobile.php", "POST", "UTF-8");
+                        httpRequest.addParam("login", newLogin);
+                        httpRequest.addParam("senha", newPassword);
+                        httpRequest.addParam("nome", NewName);
+                        httpRequest.addParam("data_nascimento", newDate);
+                        httpRequest.addParam("email", newEmail);
+                        httpRequest.addParam("telefone", newTelefone);
 
                         try {
                             InputStream is = httpRequest.execute();

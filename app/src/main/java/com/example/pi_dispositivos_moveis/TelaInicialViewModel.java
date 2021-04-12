@@ -1,8 +1,11 @@
 package com.example.pi_dispositivos_moveis;
 
+import android.app.Application;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -17,25 +20,33 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class   TelaInicialViewModel extends ViewModel {
+public class   TelaInicialViewModel extends AndroidViewModel {
     MutableLiveData<List<Anuncio>> anuncios;
+
+    public TelaInicialViewModel(@NonNull Application application) {
+        super(application);
+
+    }
 
     public MutableLiveData<List<Anuncio>> getAnuncios() {
            if (anuncios == null){
                 anuncios = new  MutableLiveData<List<Anuncio>>();
-                loadAnuncios();
             }
         return anuncios;
     }
 
-    void loadAnuncios() {
+    public void loadAnuncios(final String estilo) {
+        final String login = Config.getLogin(getApplication());
         ExecutorService executorService = Executors.newSingleThreadExecutor();
         executorService.execute(new Runnable() {
             @Override
             public void run() {
                 List<Anuncio>  anunciosList = new ArrayList<>();
-
-                HttpRequest httpRequest = new HttpRequest("link heroku","GET","UTF-8");
+                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "php_action/anuncios_mobile.php","GET","UTF-8");
+                httpRequest.addParam("login", login);
+                if(!estilo.equals("0")){
+                    httpRequest.addParam("estilo", estilo);
+                }
                 try {
                     InputStream is = httpRequest.execute();
                     String result = Util.inputStream2String(is,"UTF-8");
@@ -45,16 +56,16 @@ public class   TelaInicialViewModel extends ViewModel {
 
 
                     JSONObject jsonObject = new JSONObject(result);
-                    int success = jsonObject.getInt("success");
+                    int success = jsonObject.getInt("sucesso");
                     if (success == 1){
                         JSONArray jsonArray = jsonObject.getJSONArray("anuncios");
                         for(int i=0;i < jsonArray.length();i++){
                             JSONObject jAnuncio = jsonArray.getJSONObject(i);
 
-                            String Idanuncio = jAnuncio.getString("Idanuncio");
+                            String Idanuncio = jAnuncio.getString("idanuncio");
                             String nome = jAnuncio.getString("nome");
                             String estilo = jAnuncio.getString("estilo");
-                            String cache = jAnuncio.getString("cache");
+                            String cache = jAnuncio.getString("cache_minimo");
 
 
                             String imgBase64 = jAnuncio.getString("foto");

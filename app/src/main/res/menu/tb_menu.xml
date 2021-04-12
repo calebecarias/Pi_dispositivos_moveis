@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/perfilViewOp"
+        android:id="@+id/perfilTbOp"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Perfil"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/BuscarViewOp"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="Buscar"
+        android:id="@+id/logoutTbOp"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="Logout"
         app:showAsAction="ifRoom" />
 </menu>
