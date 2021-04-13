@@ -41,6 +41,8 @@ public class TelaInicialActivity extends AppCompatActivity {
     Myadapter myadapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_tela_inicial);
         FloatingActionButton fabAddItem = findViewById(R.id.floatingActionButton);
         fabAddItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,8 +51,7 @@ public class TelaInicialActivity extends AppCompatActivity {
                 startActivityForResult(i,NEW_ITEM_REQUEST);
             }
         });
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_inicial);
+
         Toolbar toolbar = findViewById(R.id.tbTelaInicial);
         setSupportActionBar(toolbar);
         final TelaInicialViewModel vm = new ViewModelProvider(this).get(TelaInicialViewModel.class);

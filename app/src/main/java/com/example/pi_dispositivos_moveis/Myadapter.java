@@ -55,8 +55,7 @@ public class Myadapter extends RecyclerView.Adapter{
             public void onClick(View v) {
                 Intent i = new Intent(telaInicialActivity, MainAnuncio.class);
                 i.putExtra("idanuncio", anuncio.getIdanuncio());
-
-
+                telaInicialActivity.startActivity(i);
             }
         });
 

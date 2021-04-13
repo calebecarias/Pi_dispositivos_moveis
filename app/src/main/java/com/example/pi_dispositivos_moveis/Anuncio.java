@@ -11,6 +11,7 @@ public class Anuncio {
     String spotify;
     String descricao;
     String cache;
+    String email;
 
     public Anuncio(String idanuncio, Bitmap photo, String nome, String estilo, String cache) {
         this.idanuncio = idanuncio;
@@ -20,13 +21,14 @@ public class Anuncio {
         this.cache = cache;
     }
 
-    public Anuncio( Bitmap photo, String nome, String estilo, String spotify, String descricao, String cache) {
+    public Anuncio( Bitmap photo, String nome, String estilo, String spotify, String descricao, String cache, String email) {
         this.photo = photo;
         this.nome = nome;
         this.estilo = estilo;
         this.spotify = spotify;
         this.descricao = descricao;
         this.cache = cache;
+        this.email = email;
     }
 
     public String getIdanuncio() {
@@ -56,4 +58,10 @@ public class Anuncio {
     public String getCache() {
         return cache;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+
 }

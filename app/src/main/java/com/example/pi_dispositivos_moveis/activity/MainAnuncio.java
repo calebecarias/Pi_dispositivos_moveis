@@ -6,18 +6,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pi_dispositivos_moveis.Anuncio;
 import com.example.pi_dispositivos_moveis.MainAnuncioViewModel;
 import com.example.pi_dispositivos_moveis.R;
 
 public class MainAnuncio extends AppCompatActivity {
+    String email = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,16 +29,29 @@ public class MainAnuncio extends AppCompatActivity {
         setContentView(R.layout.activity_main_anuncio);
 
         Intent i = getIntent();
-        final String anuncioid = i.getStringExtra("anuncioid");
+        final String anuncioid = i.getStringExtra("idanuncio");
 
         MainAnuncioViewModel mainAnuncioViewModel = new ViewModelProvider(this,new MainAnuncioViewModel.MainAnuncioViewModelFactory(anuncioid)).get(MainAnuncioViewModel.class);
 
-        Button btnContratar =findViewById(R.id.btnCadastrar);
-        btnContratar.setOnClickListener(new View.OnClickListener() {
+        Button btnEmailAnuncio =findViewById(R.id.btnEmailAnuncio);
+        btnEmailAnuncio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainAnuncio.this,ContratarActivity.class);
-                i.putExtra("idanuncio",anuncioid);
+                String[] emails = new String[]{email};
+                String assunto = "Contratação Music Station";
+
+                String texto = "Olá, gostaria de contratar seus serviços";
+                Intent i = new Intent(Intent.ACTION_SENDTO);
+                i.setData(Uri.parse("mailto:"));
+                i.putExtra(Intent.EXTRA_EMAIL, emails);
+                i.putExtra(Intent.EXTRA_SUBJECT, assunto);
+                i.putExtra(Intent.EXTRA_TEXT, texto);
+                try {
+                    startActivity(Intent.createChooser(i, "Escolha o APP"));
+                }
+                catch (ActivityNotFoundException e) {
+                    Toast.makeText(MainAnuncio.this, "Não há nenhum app que posso realizar essa operação", Toast.LENGTH_LONG).show();
+                }
 
                 }
         });
@@ -44,6 +61,7 @@ public class MainAnuncio extends AppCompatActivity {
         anuncio.observe(this, new Observer<Anuncio>() {
             @Override
             public void onChanged(Anuncio anuncio) {
+                email = anuncio.getEmail();
                 ImageView imvFotoMainAnuncio = findViewById(R.id.imgvFotoMainAnuncio);
                 imvFotoMainAnuncio.setImageBitmap(anuncio.getPhoto());
 

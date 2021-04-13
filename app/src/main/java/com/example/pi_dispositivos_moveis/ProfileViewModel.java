@@ -21,14 +21,17 @@ import java.util.concurrent.Executors;
 
 public class ProfileViewModel extends ViewModel {
     String login;
-    Usuario usuario;
+    MutableLiveData<Usuario> usuario;
 
     public ProfileViewModel(String login) {
         this.login = login;
     }
 
-    public Usuario getUsuario(){
-        loadPerfil();
+    public LiveData<Usuario> getUsuario(){
+        if(usuario == null){
+            usuario = new MutableLiveData<>();
+            loadPerfil();
+        }
         return usuario;
     }
 
@@ -38,7 +41,7 @@ public class ProfileViewModel extends ViewModel {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "perfil.php", "GET", "UTF-8");
+                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "/php_action/usuario_mobile.php", "GET", "UTF-8");
                 httpRequest.addParam("login", login);
 
                 try {
@@ -50,22 +53,20 @@ public class ProfileViewModel extends ViewModel {
 
 
                     JSONObject jsonObject = new JSONObject(result);
-                    int success = jsonObject.getInt("success");
+                    int success = jsonObject.getInt("sucesso");
                     if (success == 1) {
-                        JSONArray jsonArray = jsonObject.getJSONArray("perfil");
-                        JSONObject jAnuncio = jsonArray.getJSONObject(0);
+                        JSONArray jsonArray = jsonObject.getJSONArray("usuario");
+                        JSONObject jUsuario = jsonArray.getJSONObject(0);
 
-                        String nome = jAnuncio.getString("nome");
-                        String email = jAnuncio.getString("email");
-                        String telefone = jAnuncio.getString("telefone");
+                        String nome = jUsuario.getString("nome");
+                        String email = jUsuario.getString("email");
+                        String telefone = jUsuario.getString("telefone");
+                        String data_nascimento = jUsuario.getString("data_nascimento");
 
 
-                        String imgBase64 = jAnuncio.getString("foto");
-                        String pureBase64Encoded = imgBase64.substring(imgBase64.indexOf(",") + 1);
-                        Bitmap photo = Util.base642Bitmap(pureBase64Encoded);
 
-                        Usuario u = new Usuario(nome, telefone, email, photo);
-                        usuario = u;
+                        Usuario u = new Usuario(nome, telefone, email, data_nascimento);
+                        usuario.postValue(u);
 
                                            }
                 } catch (IOException | JSONException e) {
@@ -87,7 +88,7 @@ public class ProfileViewModel extends ViewModel {
         @NonNull
         @Override
         public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-            return null;
+            return (T) new ProfileViewModel(login);
         }
     }
 }

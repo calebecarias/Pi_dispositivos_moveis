@@ -43,8 +43,8 @@ public class MainAnuncioViewModel extends ViewModel {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "detalhes_anuncio.php", "GET", "UTF-8");
-                httpRequest.addParam("anuncioid", anuncioid);
+                HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "php_action/detalhesAnuncio_mobile.php", "GET", "UTF-8");
+                httpRequest.addParam("idanuncio", anuncioid);
 
                 try {
                     InputStream is = httpRequest.execute();
@@ -55,22 +55,23 @@ public class MainAnuncioViewModel extends ViewModel {
 
 
                     JSONObject jsonObject = new JSONObject(result);
-                    int success = jsonObject.getInt("success");
+                    int success = jsonObject.getInt("sucesso");
                     if (success == 1){
                         JSONArray jsonArray = jsonObject.getJSONArray("anuncio");
                         JSONObject jAnuncio = jsonArray.getJSONObject(0);
 
-                        String nome = jAnuncio.getString("anuncio");
+                        String nome = jAnuncio.getString("nome");
                         String descricao = jAnuncio.getString("descricao");
                         String estilo = jAnuncio.getString("estilo");
                         String spotify = jAnuncio.getString("spotify");
-                        String cache = jAnuncio.getString("cache");
+                        String cache = jAnuncio.getString("cache_minimo");
+                        String email = jAnuncio.getString("email");
 
                         String imgBase64 = jAnuncio.getString("foto");
                         String pureBase64Encoded = imgBase64.substring(imgBase64.indexOf(",")+1);
                         Bitmap photo = Util.base642Bitmap(pureBase64Encoded);
 
-                        Anuncio a = new Anuncio(photo,nome,estilo,spotify,descricao,cache);
+                        Anuncio a = new Anuncio(photo,nome,estilo,spotify,descricao,cache,email);
 
                         anuncio.postValue(a);
 

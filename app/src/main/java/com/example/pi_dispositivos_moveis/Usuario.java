@@ -6,13 +6,13 @@ public class Usuario {
     String nome;
     String telefone;
     String email;
-    Bitmap foto;
+    String data_nascimento;
 
-    public Usuario(String nome, String telefone, String email, Bitmap foto) {
+    public Usuario(String nome, String telefone, String email, String data_nascimento) {
         this.nome = nome;
         this.telefone = telefone;
         this.email = email;
-        this.foto = foto;
+        this.data_nascimento = data_nascimento;
     }
 
     public String getNome() {
@@ -27,7 +27,5 @@ public class Usuario {
         return email;
     }
 
-    public Bitmap getFoto() {
-        return foto;
-    }
+    public String getData(){return data_nascimento;}
 }

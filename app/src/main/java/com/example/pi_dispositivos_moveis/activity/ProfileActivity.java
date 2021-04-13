@@ -1,6 +1,8 @@
 package com.example.pi_dispositivos_moveis.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
@@ -22,17 +24,27 @@ public class ProfileActivity extends AppCompatActivity {
         String login = Config.getLogin(ProfileActivity.this);
 
         ProfileViewModel profileViewModel = new ViewModelProvider(this,new ProfileViewModel.ProfileViewModelFactory(login)).get(ProfileViewModel.class);
-        Usuario u = profileViewModel.getUsuario();
-        ImageView imvFotoPerfil = findViewById(R.id.imvPerfil);
-        imvFotoPerfil.setImageBitmap(u.getFoto());
+        LiveData<Usuario> usuario = profileViewModel.getUsuario();
+        usuario.observe(this, new Observer<Usuario>() {
+            @Override
+            public void onChanged(Usuario usuario) {
+                TextView tvDataNascPerfil = findViewById(R.id.tvDataNascPerfil);
+                tvDataNascPerfil.setText(usuario.getData());
 
-        TextView tvNomePerfil = findViewById(R.id.tvNomePerfil);
-        tvNomePerfil.setText(u.getNome());
+                TextView tvLoginPerfil = findViewById(R.id.tvLoginPerfil);
+                tvDataNascPerfil.setText(Config.getLogin(ProfileActivity.this));
 
-        TextView tvEmailPerfil = findViewById(R.id.tvEmailPerfil);
-        tvEmailPerfil.setText(u.getEmail());
+                TextView tvNomePerfil = findViewById(R.id.tvNomePerfil);
+                tvNomePerfil.setText(usuario.getNome());
 
-        TextView tvTelefonePerfil = findViewById(R.id.tvTelefonePerfil);
-        tvTelefonePerfil.setText(u.getTelefone());
+                TextView tvEmailPerfil = findViewById(R.id.tvEmailPerfil);
+                tvEmailPerfil.setText(usuario.getEmail());
+
+                TextView tvTelefonePerfil = findViewById(R.id.tvTelefonePerfil);
+                tvTelefonePerfil.setText(usuario.getTelefone());
+
+            }
+        });
+
     }
 }
