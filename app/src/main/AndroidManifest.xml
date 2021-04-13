@@ -18,6 +18,7 @@
         <activity android:name=".activity.ProfileActivity" />
         <activity android:name=".activity.TelaInicialActivity" />
         <activity android:name=".activity.SolicitacoesActivity" />
+        <activity android:name=".activity.Anuncie" />
         <activity
             android:name=".activity.MainActivity"
             android:theme="@android:style/Theme.NoDisplay">
