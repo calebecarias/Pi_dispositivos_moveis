@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,9 +25,20 @@ public class MainAnuncio extends AppCompatActivity {
         setContentView(R.layout.activity_main_anuncio);
 
         Intent i = getIntent();
-        String anuncioid = i.getStringExtra("anuncioid");
+        final String anuncioid = i.getStringExtra("anuncioid");
 
         MainAnuncioViewModel mainAnuncioViewModel = new ViewModelProvider(this,new MainAnuncioViewModel.MainAnuncioViewModelFactory(anuncioid)).get(MainAnuncioViewModel.class);
+
+        Button btnContratar =findViewById(R.id.btnCadastrar);
+        btnContratar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainAnuncio.this,ContratarActivity.class);
+                i.putExtra("idanuncio",anuncioid);
+
+                }
+        });
+
 
         LiveData<Anuncio> anuncio = mainAnuncioViewModel.getAnuncio();
         anuncio.observe(this, new Observer<Anuncio>() {
@@ -50,6 +63,7 @@ public class MainAnuncio extends AppCompatActivity {
                 tvSpotifyMainAnuncio.setText(anuncio.getSpotify());
             }
         });
+
     }
 
 }

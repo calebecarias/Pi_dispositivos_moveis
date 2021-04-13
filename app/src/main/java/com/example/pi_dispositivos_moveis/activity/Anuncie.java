@@ -40,7 +40,7 @@ public class Anuncie extends AppCompatActivity {
             Bitmap bitmap = Util.getBitmap(currentPhotoPath, imvPhoto.getWidth(), imvPhoto.getHeight());
             imvPhoto.setImageBitmap(bitmap);
         }
-        Button btnanuncie = findViewById(R.id.btnAnuncie);
+        Button btnanuncie = findViewById(R.id.btnanuncie);
         btnanuncie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +95,7 @@ public class Anuncie extends AppCompatActivity {
                 executorService.execute(new Runnable() {
                     @Override
                     public void run() {
-                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "create_anuncio.php","POST","UTF-8");
+                        HttpRequest httpRequest = new HttpRequest(Config.SERVER_URL_BASE + "create_anuncio_mobile.php","POST","UTF-8");
 
                         httpRequest.addParam("estilo",estilo);
                         httpRequest.addParam("cache",cache);

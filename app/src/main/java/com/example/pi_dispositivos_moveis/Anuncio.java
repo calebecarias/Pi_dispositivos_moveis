@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 
 public class Anuncio {
-    String Idanuncio;
+    String idanuncio;
     Bitmap photo;
     String nome;
     String estilo;
@@ -13,7 +13,7 @@ public class Anuncio {
     String cache;
 
     public Anuncio(String idanuncio, Bitmap photo, String nome, String estilo, String cache) {
-        Idanuncio = idanuncio;
+        this.idanuncio = idanuncio;
         this.photo = photo;
         this.nome = nome;
         this.estilo = estilo;
@@ -30,7 +30,7 @@ public class Anuncio {
     }
 
     public String getIdanuncio() {
-        return Idanuncio;
+        return idanuncio;
     }
 
     public Bitmap getPhoto() {

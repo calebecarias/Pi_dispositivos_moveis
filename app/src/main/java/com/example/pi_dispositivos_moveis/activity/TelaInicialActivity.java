@@ -27,6 +27,7 @@ import com.example.pi_dispositivos_moveis.Myadapter;
 import com.example.pi_dispositivos_moveis.R;
 import com.example.pi_dispositivos_moveis.TelaInicialViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
@@ -40,6 +41,14 @@ public class TelaInicialActivity extends AppCompatActivity {
     Myadapter myadapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        FloatingActionButton fabAddItem = findViewById(R.id.floatingActionButton);
+        fabAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TelaInicialActivity.this, Anuncie.class);
+                startActivityForResult(i,NEW_ITEM_REQUEST);
+            }
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_inicial);
         Toolbar toolbar = findViewById(R.id.tbTelaInicial);
